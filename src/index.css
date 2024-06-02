@@ -1,13 +1,326 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+	--pastel-green: #9cc5bb;
+	--sea-green: #10a37f;
+	--intensive-green: #0d9573;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Inter", "Kanit", sans-serif;
+}
+
+.parent {
+	display: flex;
+	height: 100vh;
+
+	/* mobile :
+	flex-direction: column; */
+}
+
+.title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50%;
+	background-color: var(--pastel-green);
+	padding: 3rem;
+
+	/* mobile :
+	width: 100%;
+	height: 40%;
+	order: 2; */
+}
+
+.title-container {
+	width: 480px;
+	height: 200px;
+	/* mobile :
+	width: 250px;
+	height: 100px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center; */
+}
+
+.title-container h1 {
+	font-weight: 800;
+	font-size: 64px;
+	color: white;
+
+	/* mobile :
+	font-size: 24px; */
+}
+
+.title-container h2 {
+	font-weight: 500;
+	font-size: 32px;
+	color: white;
+
+	/* mobile :
+	font-size: 14px; */
+}
+
+.login {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50%;
+
+	/* mobile :
+	width: 100%;
+	height: 60%;
+	order: 1; */
+}
+
+.login-outside-container {
+	width: 450px;
+	height: 520px;
+
+	/* mobile :
+	width: 280px;
+	height: 280px; */
+}
+
+.login-inside-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	height: 100%;
+}
+
+.login-inside-container h2 {
+	font-weight: 600;
+	font-size: 40px;
+	color: #505050;
+
+	/* mobile :
+	font-size: 16px; */
+}
+
+.welcome {
+	font-weight: 300;
+	font-size: 16px;
+	color: #a0a0a0;
+
+	/* mobile :
+	font-size: 10px; */
+}
+
+.textinput {
+	width: 100%;
+	height: 50px;
+	border-width: 1px;
+	border-radius: 0.5rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	font-weight: 300;
+	font-size: 14px;
+
+	/* mobile :
+	height: 30px;
+	font-size: 8px; */
+}
+
+.remember {
+	font-weight: 300;
+	font-size: 14px;
+	color: #a0a0a0;
+	margin-left: 0.25rem;
+
+	/* mobile :
+	font-size: 8px; */
+}
+
+.forgotpassword {
+	font-weight: 300;
+	font-size: 14px;
+	color: #a0a0a0;
+	cursor: pointer;
+
+	/* mobile :
+	font-size: 8px; */
+}
+
+.loginbutton {
+	width: 100%;
+	height: 60px;
+	border-width: 1px;
+	border-radius: 0.5rem;
+	background-color: var(--sea-green);
+	font-weight: 500;
+	font-size: 24px;
+	color: white;
+
+	/* mobile :
+	height: 25px;
+	font-size: 12px; */
+}
+
+.loginbutton:hover {
+	background-color: var(--intensive-green);
+}
+
+.line-loginoption {
+	width: 135px;
+	height: 1px;
+	background-color: #d0d0d0;
+
+	/* mobile :
+	width: 80px; */
+}
+
+.or-login-with {
+	font-weight: 400;
+	font-size: 16px;
+	color: #a0a0a0;
+
+	/* mobile :
+	font-size: 10px; */
+}
+
+.icon-google {
+	width: 30px;
+	height: 30px;
+
+	/* mobile :
+	width: 25px;
+	height: 25px; */
+}
+
+.new-user {
+	font-weight: 400;
+	font-size: 16px;
+	color: #a0a0a0;
+
+	/* mobile :
+	font-size: 10px; */
+}
+
+.signup {
+	font-weight: 500;
+	font-size: 16px;
+	color: var(--sea-green);
+
+	/* mobile :
+	font-size: 10px; */
+}
+
+@media only screen and (max-width: 960px) {
+	.parent {
+		flex-direction: column;
+	}
+	.title {
+		width: 100%;
+		height: 40%;
+		order: 2;
+	}
+	.title-container {
+		width: 250px;
+		height: 100px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.title-container h1 {
+		font-size: 24px;
+	}
+	.title-container h2 {
+		font-size: 14px;
+	}
+	.login {
+		width: 100%;
+		height: 60%;
+		order: 1;
+	}
+	.login-outside-container {
+		width: 280px;
+		height: 280px;
+	}
+	.login-inside-container h2 {
+		font-size: 16px;
+	}
+	.welcome {
+		font-size: 10px;
+	}
+	.textinput {
+		height: 30px;
+		font-size: 8px;
+	}
+	.remember {
+		font-size: 8px;
+	}
+	.forgotpassword {
+		font-size: 8px;
+	}
+	.loginbutton {
+		height: 25px;
+		font-size: 12px;
+	}
+	.line-loginoption {
+		width: 80px;
+	}
+	.or-login-with {
+		font-size: 10px;
+	}
+	.icon-google {
+		width: 25px;
+		height: 25px;
+	}
+	.new-user {
+		font-size: 10px;
+	}
+	.signup {
+		font-size: 10px;
+	}
+}
+
+.todolist-table {
+	width: 100%;
+}
+
+.todolist-table tr {
+	height: 35px;
+}
+
+.todolist-table td,
+th {
+	border: 1px solid #eeeeee;
+}
+
+.todolist-table tr:nth-child(odd) {
+	background-color: #f9f9f9;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.tasklist-table {
+	width: 100%;
+}
+
+.tasklist-table tr {
+	height: 20px;
+}
+
+.tasklist-table td,
+th {
+	border: 1px solid #eeeeee;
+}
+
+.tasklist-table tr:nth-child(odd) {
+	background-color: #f9f9f9;
 }

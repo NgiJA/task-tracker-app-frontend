@@ -33,6 +33,12 @@ function AuthContextProvider({ children }) {
 		removeUserAccessToken();
 	};
 
+	const loginWithGoogle = async (input) => {
+		const res = await authService.googleLogin(input);
+		addUserAccessToken(res.data.token);
+		getUser();
+	};
+
 	useEffect(() => {
 		if (getUserAccessToken()) {
 			getUser();
@@ -45,7 +51,8 @@ function AuthContextProvider({ children }) {
 				user: user,
 				register: register,
 				login: login,
-				logout: logout
+				logout: logout,
+				loginWithGoogle: loginWithGoogle
 			}}
 		>
 			{children}

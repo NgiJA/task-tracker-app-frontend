@@ -5,9 +5,11 @@ import { useAuth } from "../contexts/AuthContext";
 import { useLoading } from "../contexts/LoadingContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useGoogleLogin } from "@react-oauth/google";
+import axios from "axios";
 
 function LoginPage() {
-	const { login } = useAuth();
+	const { login, loginWithGoogle } = useAuth();
 	const { startLoading, stopLoading } = useLoading();
 	const navigate = useNavigate();
 	const [input, setInput] = useState({
@@ -33,6 +35,33 @@ function LoginPage() {
 			stopLoading();
 		}
 	};
+
+	const googleLogin = useGoogleLogin({
+		onSuccess: async (tokenResponse) => {
+			const { access_token } = tokenResponse;
+			try {
+				// Fetch user information using the access token
+				const userInfo = await axios.get(
+					"https://www.googleapis.com/oauth2/v3/userinfo",
+					{
+						headers: {
+							Authorization: `Bearer ${access_token}`
+						}
+					}
+				);
+
+				startLoading();
+				await loginWithGoogle(userInfo.data);
+				navigate("/todolist");
+				toast.success("success login");
+			} catch (error) {
+				console.error("Error fetching user info:", error);
+			} finally {
+				stopLoading();
+			}
+		},
+		onError: () => console.log("Login Failed")
+	});
 
 	return (
 		<div className="parent">
@@ -82,7 +111,10 @@ function LoginPage() {
 							<div className="line-loginoption"></div>
 						</div>
 						<div className="flex justify-center items-center">
-							<FcGoogle className="icon-google" />
+							<FcGoogle
+								className="icon-google cursor-pointer"
+								onClick={() => googleLogin()}
+							/>
 						</div>
 						<div className="flex justify-center items-center gap-2">
 							<span className="new-user">New user ?</span>

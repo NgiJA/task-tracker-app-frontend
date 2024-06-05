@@ -6,16 +6,19 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import LoadingContextProvider from "./contexts/LoadingContext";
 import AuthContextProvider from "./contexts/AuthContext";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	// <React.StrictMode>
 	<BrowserRouter>
-		<LoadingContextProvider>
-			<AuthContextProvider>
-				<App />
-			</AuthContextProvider>
-		</LoadingContextProvider>
+		<GoogleOAuthProvider clientId="148013273968-gvjdqh1db1ehtqsnr93b3030dvc0dekc.apps.googleusercontent.com">
+			<LoadingContextProvider>
+				<AuthContextProvider>
+					<App />
+				</AuthContextProvider>
+			</LoadingContextProvider>
+		</GoogleOAuthProvider>
 	</BrowserRouter>
 
 	// </React.StrictMode>

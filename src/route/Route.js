@@ -7,6 +7,7 @@ import SignupPage from "../pages/SignupPage";
 import TodolistPage from "../pages/TodolistPage";
 import ExcelPage from "../pages/ExcelPage";
 import PDFPage from "../pages/PDFPage";
+import ResetPasswordPage from "../pages/ResetPasswordPage";
 
 function Router() {
 	const { user } = useAuth();
@@ -27,6 +28,7 @@ function Router() {
 				<>
 					<Route path="/" element={<LoginPage />} />
 					<Route path="/register" element={<SignupPage />} />
+					<Route path="/resetpassword" element={<ResetPasswordPage />} />
 					<Route path="*" element={<NotFoundPage />} />
 				</>
 			)}

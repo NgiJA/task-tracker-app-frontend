@@ -88,7 +88,7 @@ function SignupPage() {
 						value={input.lastName}
 						onChange={handleChangeInput}
 					/>
-					<button className="w-[100%] h-[60px] border rounded-lg bg-[#10a37f] font-medium text-[24px] text-white">
+					<button className="w-[100%] h-[60px] border rounded-lg bg-[#10a37f] font-medium text-[24px] text-white hover:bg-[#0d9573]">
 						Submit
 					</button>
 				</form>

@@ -102,7 +102,12 @@ function LoginPage() {
 									Remember me
 								</label>
 							</div>
-							<p className="forgotpassword">Forgot Password ?</p>
+							<p
+								className="forgotpassword"
+								onClick={() => navigate("/resetpassword")}
+							>
+								Forgot Password ?
+							</p>
 						</div>
 						<button className="loginbutton">Log in</button>
 						<div className="flex justify-between items-center">

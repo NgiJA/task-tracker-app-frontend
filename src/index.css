@@ -18,6 +18,11 @@
 	font-family: "Inter", "Kanit", sans-serif;
 }
 
+input[type="text"]:focus,
+input[type="password"]:focus {
+	outline: none;
+}
+
 .parent {
 	display: flex;
 	height: 100vh;
@@ -135,7 +140,6 @@
 	font-weight: 300;
 	font-size: 14px;
 	color: #a0a0a0;
-	margin-left: 0.25rem;
 
 	/* mobile :
 	font-size: 8px; */

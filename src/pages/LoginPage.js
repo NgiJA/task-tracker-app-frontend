@@ -1,12 +1,13 @@
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { useLoading } from "../contexts/LoadingContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
+import Checkbox from "@mui/material/Checkbox";
 
 function LoginPage() {
 	const { login, loginWithGoogle } = useAuth();
@@ -16,9 +17,14 @@ function LoginPage() {
 		email: "",
 		password: ""
 	});
+	const [rememberMe, setRememberMe] = useState(false);
 
 	const handleChangeInput = (e) => {
 		setInput({ ...input, [e.target.name]: e.target.value });
+	};
+
+	const handleRememberMeChange = (e) => {
+		setRememberMe(e.target.checked);
 	};
 
 	const handleSubmitForm = async (e) => {
@@ -26,6 +32,15 @@ function LoginPage() {
 		try {
 			startLoading();
 			await login(input);
+
+			if (rememberMe) {
+				localStorage.setItem("rememberMe", true);
+				localStorage.setItem("email", input.email);
+			} else {
+				localStorage.removeItem("rememberMe");
+				localStorage.removeItem("email");
+			}
+
 			navigate("/todolist");
 			toast.success("success login");
 		} catch (err) {
@@ -63,6 +78,16 @@ function LoginPage() {
 		onError: () => console.log("Login Failed")
 	});
 
+	useEffect(() => {
+		const remembered = localStorage.getItem("rememberMe") === "true";
+		if (remembered) {
+			setInput({
+				email: localStorage.getItem("email") || ""
+			});
+			setRememberMe(true);
+		}
+	}, []);
+
 	return (
 		<div className="parent">
 			<div className="title">
@@ -95,9 +120,20 @@ function LoginPage() {
 							value={input.password}
 							onChange={handleChangeInput}
 						/>
-						<div className="flex justify-between">
-							<div className="flex items-center">
-								<input type="checkbox" name="remember" />
+						<div className="flex justify-between items-center">
+							<div className="flex items-center gap-[5px]">
+								<Checkbox
+									className="h-[25px] !p-0"
+									sx={{
+										color: "#c0c0c0",
+										"&.Mui-checked": {
+											color: "#10A37F"
+										}
+									}}
+									name="remember"
+									checked={rememberMe}
+									onChange={handleRememberMeChange}
+								/>
 								<label className="remember" htmlFor="remember">
 									Remember me
 								</label>

@@ -7,7 +7,7 @@ function Menu({ pageName, setPage }) {
 		<div className="flex flex-col w-[320px] bg-[#F9F9F9]">
 			<div className="flex items-center h-[96px] w-full bg-[#9CC5BB]">
 				<p className="font-semibold text-[24px] text-white left-[30px] relative">
-					To-Do List App
+					Task Tracker App
 				</p>
 			</div>
 			<div

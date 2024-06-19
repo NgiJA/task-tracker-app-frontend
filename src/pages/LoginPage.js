@@ -92,7 +92,7 @@ function LoginPage() {
 		<div className="parent">
 			<div className="title">
 				<div className="title-container">
-					<h1>To-Do List App</h1>
+					<h1>Task Tracker</h1>
 					<h2>Plan your tasks</h2>
 					<h2>Help to memorize to do things</h2>
 				</div>
